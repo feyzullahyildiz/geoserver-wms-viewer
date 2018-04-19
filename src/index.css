@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.map {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  /* background-color: blue; */
+}
+.layers{
+  position: fixed;
+  z-index: 100;
+  right: 0;
+  margin: 20px;
+  padding: 8px;
+  background-color: white;
+  border-radius: 10%;
+}
+.layers .layers-header{
+  font-size: 18px;
+}
+.layers .layers-body{
+  font-size: 14px;
+  right: 0;
+}
+a.active{
+  background-color: green;
+}
+.m-right{
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  margin-bottom: 20px;
+  margin-right: 15px;
+  padding: 10px;
+  background-color: #c1c1c1c1;
+  border-radius: 10%;
+}

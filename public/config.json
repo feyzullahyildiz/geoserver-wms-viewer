@@ -1,0 +1,37 @@
+{
+    "lat": 41.02,
+    "lng": 28.86,
+    "zoom": 8,
+    "layers": [
+        {
+            "url": "http://192.168.20.83:8080/geoserver/panaromikbulut/wms",
+            "layers": [
+                {
+                    "layerName": "panaromikbulut:kapi",
+                    "visible": false,
+                    "opacity": 0.85
+                }
+            ]
+        },
+        {
+            "url": "http://192.168.20.114:8091/geoserver/YTB/wms",
+            "layers": [
+                {
+                    "layerName": "YTB:an_bg_ilce_okulsayi",
+                    "visible": true,
+                    "opacity": 0.85
+                },
+                {
+                    "layerName": "YTB:bg_universiteler",
+                    "visible": true,
+                    "opacity": 0.85
+                },
+                {
+                    "layerName": "YTB:an_bg_il_camisayi",
+                    "visible": true,
+                    "opacity": 0.85
+                }
+            ]
+        }
+    ]
+}
