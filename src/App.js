@@ -11,18 +11,15 @@ import ImageWms from 'ol/source/imagewms'
 import ControlScaleLine from 'ol/control/scaleline'
 import Control from 'ol/control'
 
-
-import config from '../public/config.json'
-
 class App extends Component {
   constructor() {
     super()
-    this._layers =[]
+    this._layers = []
     this.state = {}
   }
   componentDidMount() {
     var scaleLineControl = new ControlScaleLine({
-      className : 'm-right'
+      className: 'm-right'
     })
     const map = new Map({
       controls: Control.defaults({
@@ -33,10 +30,7 @@ class App extends Component {
         scaleLineControl
       ]),
       target: 'map',
-      view: new View({
-        center: Proj.fromLonLat([config.lng, config.lat]),
-        zoom: config.zoom,
-      })
+      view: new View()
     })
     this._map = map
     map.updateSize()
@@ -45,44 +39,40 @@ class App extends Component {
     scaleLineControl.setUnits('metric')
     console.log('map', map)
   }
-  changeVisibility(e, item){
-    // console.log('item', item)
-    // console.log('e', e.target)
+  changeVisibility(e, item) {
     item.wms.setVisible(!item.wms.getVisible())
-    if(item.wms.getVisible() === true){
+    if (item.wms.getVisible() === true) {
       e.target.className = 'active'
-    }else{
+    } else {
       e.target.className = ''
     }
-    console.log('scale ', this.mapScale(100))
   }
-  mapScale (dpi) {
-    var unit = this._map.getView().getProjection().getUnits();
-    var resolution = this._map.getView().getResolution();
-    var inchesPerMetre = 39.37;
-
-    return resolution * Proj.METERS_PER_UNIT[unit] * inchesPerMetre * dpi;
-}
   loadWmsLayers() {
-    config.layers.map(geoserver => {
-      // console.log('geoserver', geoserver)
-      geoserver.layers.map(layer => {
-        let wms = new Image({
-          source : new ImageWms({
-            url : geoserver.url,
-            params: {'LAYERS': layer.layerName},
-            serverType: 'geoserver'
-          }),
-          opacity: layer.opacity
+    fetch('/config.json')
+      .then(data => data.json())
+      .then(config => {
+        this._map.getView().animate({ zoom: config.zoom, center: Proj.fromLonLat([config.lng, config.lat]) })
+        config.layers.map(geoserver => {
+          // console.log('geoserver', geoserver)
+          geoserver.layers.map(layer => {
+            let wms = new Image({
+              source: new ImageWms({
+                url: geoserver.url,
+                params: { 'LAYERS': layer.layerName },
+                serverType: 'geoserver'
+              }),
+              opacity: layer.opacity
+            })
+            this._map.addLayer(wms)
+            this._layers.push({ wms: wms, layer: layer })
+          })
         })
-      this._map.addLayer(wms)
-      this._layers.push({wms: wms, layer: layer})
+        let _layers = this._layers.map((item, index) => {
+          return <div key={index}><a className={item.layer.visible === true ? 'active' : ''} key={index} href="#" onClick={(e) => this.changeVisibility(e, item)} > {item.layer.layerName.split(':')[1]} </a></div>
+        })
+        this.setState({ layers: _layers })
       })
-    })
-    let _layers = this._layers.map((item, index) =>{
-      return <div key={index}><a className={item.layer.visible === true ? 'active' : ''} key={index} href="#" onClick={(e) => this.changeVisibility(e, item)} > {item.layer.layerName.split(':')[1]} </a></div>
-    })
-    this.setState({layers : _layers})
+
   }
   render() {
 
