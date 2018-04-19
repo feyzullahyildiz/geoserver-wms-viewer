@@ -7,6 +7,7 @@ projeyi çalıştırmak için
 katman eklemek için config.json dosyasında ilgili ayarları yapabilirsiniz.
 
 * Örnek config.json dosyası
+```json
 {
     "lat": 41.02,
     "lng": 28.86,
@@ -39,4 +40,6 @@ katman eklemek için config.json dosyasında ilgili ayarları yapabilirsiniz.
         }
     ]
 }
+```
+
 Uygulamayı açtığınızda haritanın konumunu belirlemek için config.json dosyasından zoom, lat, lng değerlerini değiştirebilirsiniz.
