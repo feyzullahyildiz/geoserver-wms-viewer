@@ -1,5 +1,10 @@
 Bu proje geoserverda wms olarak yayınlanan katmanları aynı anda kullanıp-yönetebilmek amacı ile yapılmıştır.
 
+Projenin release(hazır) halini kullanmak için IIS, Apache gibi serverlarda yayımlamanız gerekiyor.
+Tavisyem nodejs üzerinde çalışan http-server kullanmanız. Bunun için bilgisayarınızda nodejs kurulu olması gerekmektedir.
+- cmd ekranında 'npm install http-server -g' yazınız. Detaylı bilgi : https://www.npmjs.com/package/http-server
+- cmd ekranrında yayımlamak istediğiniz klasör için, 'http-server "istediğiniz_klasör"' yazdıktan sonra altta çıkan link-portlardan projeye ulaşabilirsiniz. Örnek kod: 'http-server C:\Users\Feyzullah\Desktop\Projem27'
+
 projeyi çalıştırmak için
 - npm install (yarn install)
 - npm start (yarn start)
