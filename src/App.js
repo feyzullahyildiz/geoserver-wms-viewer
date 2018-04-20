@@ -61,7 +61,8 @@ class App extends Component {
                 params: { 'LAYERS': layer.layerName },
                 serverType: 'geoserver'
               }),
-              opacity: layer.opacity
+              opacity: layer.opacity,
+              visible: layer.visible
             })
             this._map.addLayer(wms)
             this._layers.push({ wms: wms, layer: layer })
