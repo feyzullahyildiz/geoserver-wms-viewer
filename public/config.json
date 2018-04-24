@@ -4,16 +4,6 @@
     "zoom": 8,
     "layers": [
         {
-            "url": "http://192.168.20.83:8080/geoserver/panaromikbulut/wms",
-            "layers": [
-                {
-                    "layerName": "panaromikbulut:kapi",
-                    "visible": false,
-                    "opacity": 0.85
-                }
-            ]
-        },
-        {
             "url": "http://192.168.20.114:8091/geoserver/YTB/wms",
             "layers": [
                 {
@@ -31,6 +21,180 @@
                     "visible": true,
                     "opacity": 0.85
                 }
+            ]
+        },
+        {
+            "url": "http://192.168.20.83:8080/geoserver/panoramikbulut/wms",
+            "layers": [
+                {
+                    "layerName": "panaromikbulut:ada",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                  {
+                    "layerName": "panaromikbulut:agac",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                  {
+                    "layerName": "panaromikbulut:akarsu",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                   {
+                    "layerName": "panaromikbulut:atiksuhatti",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:aydinlatmadiregi",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:baraj",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:cop",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:dogalgazhatti",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:donatialani",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:durak",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:duvar",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:elektrikdiregi",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:elektrikhatti",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:engellirampasi",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:golet",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:hemzemingecit",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:icmesuyuhatti",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:il",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:ilce",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:kaldirim",
+                    "visible": true,
+                    "opacity": 0.85
+                  },  {
+                    "layerName": "panaromikbulut:kapi",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:mahalle",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:mazgal",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:onemliyer",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:sinyalizasyon",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:telekomhatti",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:trafiklevhasi",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:ulasimguzergahi",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:ustgecit",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:yagmursuyuhatti",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:yanginvanasi",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:yapi",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:yayagecidi",
+                    "visible": true,
+                    "opacity": 0.85
+                  },
+                    {
+                    "layerName": "panaromikbulut:yol",
+                    "visible": true,
+                    "opacity": 0.85
+                  }
             ]
         }
     ]
