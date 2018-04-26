@@ -16,6 +16,7 @@ class App extends Component {
     super()
     this._layers = []
     this.state = {}
+    this.onBasemapVisibleChange = this.onBasemapVisibleChange.bind(this)
   }
   componentDidMount() {
     var scaleLineControl = new ControlScaleLine({
@@ -34,10 +35,9 @@ class App extends Component {
     })
     this._map = map
     map.updateSize()
-    map.addLayer(new Tile({ source: new OSM() }))
+
     this.loadWmsLayers()
     scaleLineControl.setUnits('metric')
-    // console.log('map', map)
   }
   changeVisibility(e, item) {
     // console.log('item', item)
@@ -68,10 +68,23 @@ class App extends Component {
       item.wms.getSource().updateParams({ 'LAYERS': layers })
     }
   }
+  onBasemapVisibleChange(e, e2){
+    console.log('e value ', e.target.checked)
+    // console.log('basemap', this._basemap)
+    this._basemap.setVisible(e.target.checked)
+  }
   loadWmsLayers() {
     fetch('/config.json')
       .then(data => data.json())
       .then(config => {
+        this._basemap = new Tile({ source: new OSM })
+        this._basemap.setOpacity(config.basemapOpacity)
+        // console.log('basemap', this._basemap)
+        this._map.addLayer(this._basemap)
+
+        let basemaps = <label>OSM<input type="checkbox" defaultChecked={true} onChange={this.onBasemapVisibleChange}/></label>
+        this.setState({basemaps : basemaps})
+
         this._map.getView().animate({ zoom: config.zoom, center: Proj.fromLonLat([config.lng, config.lat]) })
         config.layers.map(geoserver => {
           console.log('geoserver', geoserver)
@@ -115,6 +128,10 @@ class App extends Component {
         <div className="layers">
           <div className="layers-header">Katmanlar</div>
           <div className="layers-body"> {this.state.layers} </div>
+        </div>
+        <div className="basemaps">
+          <div className="basemaps-header">Altıklar</div>
+          <div className="basemaps-body">{this.state.basemaps}</div>
         </div>
       </div>
     );

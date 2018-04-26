@@ -2,6 +2,7 @@
     "lat": 41.02,
     "lng": 28.86,
     "zoom": 8,
+    "basemapOpacity" : 0.5,
     "layers": [
         {
             "url": "http://192.168.20.114:8091/geoserver/YTB/wms",
