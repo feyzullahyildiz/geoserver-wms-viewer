@@ -19,6 +19,7 @@ body {
   border-radius: 10px;
 }
 .basemaps{
+  min-width: 200px;
   position: fixed;
   z-index: 1001;
   left: 0;
