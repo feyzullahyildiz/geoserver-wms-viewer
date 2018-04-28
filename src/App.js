@@ -11,14 +11,17 @@ import ImageWms from 'ol/source/imagewms'
 import ControlScaleLine from 'ol/control/scaleline'
 import Control from 'ol/control'
 import Slider from 'react-rangeslider'
+import Layers from './components/Layers'
 import 'react-rangeslider/lib/index.css'
+import Basemaps from './components/Basemaps';
 class App extends Component {
   constructor() {
     super()
     this._layers = []
     this.state = {}
     this.onBasemapVisibleChange = this.onBasemapVisibleChange.bind(this)
-    this.basemapOpacityChange = this.basemapOpacityChange.bind(this)
+    this.onBasemapOpacityChange = this.onBasemapOpacityChange.bind(this)
+    this.changeVisibility = this.changeVisibility.bind(this)
   }
   componentDidMount() {
     var scaleLineControl = new ControlScaleLine({
@@ -42,7 +45,7 @@ class App extends Component {
     scaleLineControl.setUnits('metric')
   }
 
-  basemapOpacityChange(e, item) {
+  onBasemapOpacityChange(e, item) {
     this._basemap.setOpacity(e)
     this.setState({
       basemapOpacity: e
@@ -125,17 +128,8 @@ class App extends Component {
 
           return undefined
         })
-        let _layers = this._layers.map((item, index) => {
-          console.log('item', item)
-          return <div key={index}>
-            <a className={item.layer.visible === true ? 'active' : ''}
-              key={index} href="#"
-              onClick={(e) => this.changeVisibility(e, item)} >
-              {item.layer.layerName.split(':')[1]}
-            </a>
-          </div>
-        })
-        this.setState({ layers: _layers })
+
+        this.setState({ layers: this._layers })
       })
 
   }
@@ -143,17 +137,9 @@ class App extends Component {
 
     return (
       <div id="map" className="map">
-        <div className="layers">
-          <div className="layers-header">Katmanlar</div>
-          <div className="layers-body"> {this.state.layers} </div>
-        </div>
-        <div className="basemaps">
-          <div className="basemaps-header">Altıklar</div>
-          <div className="basemaps-slider">
-            <Slider min={0.1} max={1} value={this.state.basemapOpacity} step={0.1} onChange={this.basemapOpacityChange} tooltip={false} />
-          </div>
-          <div className="basemaps-body">{this.state.basemaps}</div>
-        </div>
+        <Layers data={this.state.layers} onLayerVisibilityChange={this.changeVisibility} />
+        <Basemaps data={this.state.basemaps} onBasemapOpacityChange={this.onBasemapOpacityChange} baseMapOpcity={this.state.basemapOpacity}/>
+
       </div>
     );
   }
