@@ -18,7 +18,6 @@ class LayersContainer extends Component {
         })
     }
     onLayerVisibleChange(value, id){
-        console.log('value', value.target.checked)
         this.props.dispatch(changeBaseLayerVisibility(value.target.checked, id))
     }
     onLayerClick(e, id, item) {

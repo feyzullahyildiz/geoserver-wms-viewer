@@ -51,7 +51,7 @@ export default function (state = [], action) {
 
 
     else {
-        console.log('reducer layers no action found')
+        // console.log('reducer layers no action found')
     }
     return state
 }

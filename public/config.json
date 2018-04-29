@@ -8,7 +8,7 @@
       "url": "http://localhost:8081/topp/wms",
       "opacity": 0.5,
       "type": "geoserver",
-      "visible": false,
+      "visible": true,
       "layers": [
         {
           "layerName": "topp:states",
@@ -24,17 +24,16 @@
       "url": "http://localhost:8081/qgis/wms",
       "opacity": 0.8,
       "type": "geoserver",
-      "visible": false,
+      "visible": true,
       "layers": [
+        {
+          "layerName": "qgis:gungoren_panogps.shp",
+          "visible": false
+        },
         {
           "layerName": "qgis:gungoren.shp",
           "visible": true
-        },
-        {
-          "layerName": "qgis:gungoren_panogps.shp",
-          "visible": true
         }
-        
       ]
     }
   ]
