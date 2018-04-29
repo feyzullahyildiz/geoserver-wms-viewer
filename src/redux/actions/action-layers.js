@@ -9,13 +9,11 @@ export function addLayer(wms, info, name) {
 
     }
 }
-export function changeVisiblity(name, parent){
-    // console.log('name', name)
-    // console.log('parent', parent)
+export function changeVisiblity(name, id){
     return{
         type: 'CHANGE_VISIBILITY',
         payload: {
-            name, parent
+            name, id
         }
     }
 }

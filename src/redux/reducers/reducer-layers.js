@@ -3,10 +3,9 @@ export default function (state = [], action) {
         state = [...state, action.payload]
     }
     else if (action.type === 'CHANGE_VISIBILITY') {
-        state.map(x => {
-            // console.log('x', x)
-            // console.log('action.payload', action.payload)
-            if (x.wms === action.payload.parent.wms) {
+        state = state.map(x => {
+            if (x.id === action.payload.id) {
+                console.log('asdfasdf')
                 let layers = x.info.layers.map(ll => {
                     if (ll.layerName === action.payload.name.layerName) {
                         ll.visible = !ll.visible
@@ -14,8 +13,8 @@ export default function (state = [], action) {
                     return ll
                 })
                 let layerString = layers.filter(x => x.visible)
-                .map(x => x.layerName)
-                .join(',')
+                    .map(x => x.layerName)
+                    .join(',')
                 x.wms.getSource().updateParams({ 'LAYERS': layerString })
                 x.layers = layers
             }
@@ -23,9 +22,9 @@ export default function (state = [], action) {
         })
         state = [...state]
     }
-    else if(action.type === 'CHANGE_OPACITY'){
+    else if (action.type === 'CHANGE_OPACITY') {
         state = state.map(x => {
-            if(x.id === action.payload.id){
+            if (x.id === action.payload.id) {
                 x.info.opacity = action.payload.value
                 x.wms.setOpacity(x.info.opacity)
             }

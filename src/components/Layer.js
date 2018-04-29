@@ -7,7 +7,7 @@ export const Layer = (props) => {
 
             return <li key={index}>
                 <a key={index} className={item.visible === true ? 'active' : ''}
-                    onClick={(e) => props.onLayerClick(e, props.data, item)}>
+                    onClick={(e) => props.onLayerClick(e, props.data.id, item)}>
                     {item.layerName.split(':')[1]}
                 </a></li>
         })
