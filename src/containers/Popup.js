@@ -9,11 +9,7 @@ class Popup extends Component {
     constructor() {
         super()
         this.state = { features: undefined }
-
-        this.onPopupClose2 = this.onPopupClose2.bind(this)
-
         store.subscribe(() => {
-            // console.log('store.getState().features', store.getState().features)
             this.setState({ features: store.getState().features })
         })
     }
@@ -22,9 +18,6 @@ class Popup extends Component {
             element: document.getElementById('popup')
         })
         store.dispatch(setPopup(this._overlay))
-    }
-    onPopupClose2() {
-        this._overlay.setPosition(undefined)
     }
     featureRenderer(feature, i, j) {
         let keys = Object.keys(feature.properties)
@@ -45,9 +38,7 @@ class Popup extends Component {
 
         let features = this.state.features
         let display
-        // console.log('upper features', features)
         if (features !== undefined && features.position !== undefined) {
-            // console.log('here', features)
             let layers = features.features.map(layer => {
                 if (layer.features.length > 0) {
                     return layer
@@ -67,7 +58,6 @@ class Popup extends Component {
         return (
             <div>
                 <div id="popup" className="ol-popup" style={{ zIndex: 1000 }}>
-                    {/* <a href="#" onClick={(e)=>{this.onPopupClose(e)}}>ss</a> */}
                     <div id="popup-content">{display}</div>
                 </div>
             </div>
