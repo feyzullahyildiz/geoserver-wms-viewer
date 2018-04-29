@@ -14,36 +14,44 @@ katman eklemek için config.json dosyasında ilgili ayarları yapabilirsiniz.
 * Örnek config.json dosyası
 ```json
 {
-    "lat": 41.02,
-    "lng": 28.86,
-    "zoom": 8,
-    "layers": [
+  "lat": 41.02,
+  "lng": 28.86,
+  "zoom": 8,
+  "basemapOpacity": 0.9,
+  "layers": [
+    {
+      "url": "http://localhost:8081/topp/wms",
+      "opacity": 0.5,
+      "type": "geoserver",
+      "visible": true,
+      "layers": [
         {
-            "url": "http://192.168.20.83:8080/geoserver/panaromikbulut/wms",
-            "layers": [
-                {
-                    "layerName": "panaromikbulut:kapi",
-                    "visible": false,
-                    "opacity": 0.85
-                }
-            ]
+          "layerName": "topp:states",
+          "visible": true
         },
         {
-            "url": "http://192.168.20.114:8091/geoserver/YTB/wms",
-            "layers": [
-                {
-                    "layerName": "YTB:bg_universiteler",
-                    "visible": true,
-                    "opacity": 0.85
-                },
-                {
-                    "layerName": "YTB:an_bg_il_camisayi",
-                    "visible": true,
-                    "opacity": 0.85
-                }
-            ]
+          "layerName": "topp:tasmania_roads",
+          "visible": true
         }
-    ]
+      ]
+    },
+    {
+      "url": "http://localhost:8081/qgis/wms",
+      "opacity": 0.8,
+      "type": "geoserver",
+      "visible": true,
+      "layers": [
+        {
+          "layerName": "qgis:gungoren_panogps.shp",
+          "visible": false
+        },
+        {
+          "layerName": "qgis:gungoren.shp",
+          "visible": true
+        }
+      ]
+    }
+  ]
 }
 ```
 
