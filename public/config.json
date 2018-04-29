@@ -2,7 +2,7 @@
   "lat": 41.02,
   "lng": 28.86,
   "zoom": 8,
-  "basemapOpacity": 0.5,
+  "basemapOpacity": 0.9,
   "layers": [
     {
       "url": "http://localhost:8081/topp/wms",

@@ -10,10 +10,13 @@ import Image from 'ol/layer/image'
 import ImageWms from 'ol/source/imagewms'
 import ControlScaleLine from 'ol/control/scaleline'
 import Control from 'ol/control'
-import Slider from 'react-rangeslider'
 import Layers from './components/Layers'
 import 'react-rangeslider/lib/index.css'
 import Basemaps from './components/Basemaps';
+import {connect} from 'react-redux'
+import {addLayer, changeVisiblity} from './redux/actions/action-layers'
+import store from './redux/store'
+
 class App extends Component {
   constructor() {
     super()
@@ -22,6 +25,8 @@ class App extends Component {
     this.onBasemapVisibleChange = this.onBasemapVisibleChange.bind(this)
     this.onBasemapOpacityChange = this.onBasemapOpacityChange.bind(this)
     this.changeVisibility = this.changeVisibility.bind(this)
+    this.onLayerClick = this.onLayerClick.bind(this)
+    
   }
   componentDidMount() {
     var scaleLineControl = new ControlScaleLine({
@@ -43,15 +48,23 @@ class App extends Component {
 
     this.loadWmsLayers()
     scaleLineControl.setUnits('metric')
-  }
 
+    store.subscribe(() => {
+      this.setState({layers : store.getState().layers})
+    })
+  }
   onBasemapOpacityChange(e, item) {
     this._basemap.setOpacity(e)
     this.setState({
       basemapOpacity: e
     })
   }
-
+  onLayerClick(e, data, item) {
+    this.props.dispatch(
+      changeVisiblity(item, data)
+    )
+    console.log('item', item)
+  }
   changeVisibility(e, item) {
     // console.log('item', item)
     if (item.wms.getVisible() === false) {
@@ -99,7 +112,7 @@ class App extends Component {
         this.setState({ basemaps: basemaps })
 
         this._map.getView().animate({ zoom: config.zoom, center: Proj.fromLonLat([config.lng, config.lat]) })
-        config.layers.map(geoserver => {
+        let mLayers = config.layers.map(geoserver => {
           console.log('geoserver', geoserver)
           let wms = new Image({
             source: new ImageWms({
@@ -110,7 +123,9 @@ class App extends Component {
             opacity: geoserver.opacity,
             visible: true
           })
-
+          let urlArray = geoserver.url.split('/')
+          console.log('this', this)
+          this.props.dispatch(addLayer(wms, geoserver, urlArray[urlArray.length - 2].toUpperCase() ))
           this._map.addLayer(wms)
 
           let layersString = geoserver.layers.map(layer => {
@@ -125,11 +140,9 @@ class App extends Component {
 
 
           wms.getSource().updateParams({ 'LAYERS': layersString })
-
-          return undefined
+          // geoserver.wms = wms
+          return geoserver
         })
-
-        this.setState({ layers: this._layers })
       })
 
   }
@@ -137,12 +150,14 @@ class App extends Component {
 
     return (
       <div id="map" className="map">
-        <Layers data={this.state.layers} onLayerVisibilityChange={this.changeVisibility} />
-        <Basemaps data={this.state.basemaps} onBasemapOpacityChange={this.onBasemapOpacityChange} baseMapOpcity={this.state.basemapOpacity}/>
+        <Layers data={this.state.layers} onLayerVisibilityChange={this.changeVisibility} onLayerClick={this.onLayerClick} />
+        <Basemaps data={this.state.basemaps} onBasemapOpacityChange={this.onBasemapOpacityChange} baseMapOpcity={this.state.basemapOpacity} />
 
       </div>
     );
   }
 }
-
-export default App;
+const mapStateToProps = (state) =>({
+  layers : state.layers
+})
+export default connect(mapStateToProps)(App);
