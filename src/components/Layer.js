@@ -6,7 +6,7 @@ export const Layer = (props) => {
         layers = props.data.info.layers.map((item, index) => {
 
             return <li key={index}>
-                <a key={index} className={item.visible === true ? 'active' : ''}
+                <a href="#" key={index} className={item.visible === true ? 'active' : ''}
                     onClick={(e) => props.onLayerClick(e, props.data.id, item)}>
                     {item.layerName.split(':')[1]}
                 </a></li>

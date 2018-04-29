@@ -25,4 +25,12 @@ export function changeOpacity(id, value){
         }
     }
 }
+export function changeBaseLayerVisibility(visible, id){
+    return{
+        type :'CHANGE_BASE_LAYER_VISIBILITY',
+        payload: {
+            visible, id
+        }
+    }
+}
 

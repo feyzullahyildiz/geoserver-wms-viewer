@@ -4,8 +4,12 @@ export default function (state = [], action) {
     }
     else if (action.type === 'CHANGE_VISIBILITY') {
         state = state.map(x => {
+            if (x.info.layers.filter(x => x.visible).length === 1 && action.payload.name.visible) {
+                x.info.visible = false
+                x.wms.setVisible(false)
+                return x
+            }
             if (x.id === action.payload.id) {
-                console.log('asdfasdf')
                 let layers = x.info.layers.map(ll => {
                     if (ll.layerName === action.payload.name.layerName) {
                         ll.visible = !ll.visible
@@ -27,6 +31,17 @@ export default function (state = [], action) {
             if (x.id === action.payload.id) {
                 x.info.opacity = action.payload.value
                 x.wms.setOpacity(x.info.opacity)
+            }
+            return x
+        })
+
+        return [...state]
+    }
+    else if (action.type === 'CHANGE_BASE_LAYER_VISIBILITY') {
+        state = state.map(x => {
+            if (x.id === action.payload.id) {
+                x.info.visible = action.payload.visible
+                x.wms.setVisible(x.info.visible)
             }
             return x
         })

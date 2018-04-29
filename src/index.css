@@ -49,3 +49,6 @@ a.active{
   background-color: #c1c1c1c1;
   border-radius: 10%;
 }
+li{
+  list-style-type: none
+}
