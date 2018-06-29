@@ -18,6 +18,16 @@ body {
   background-color: white;
   border-radius: 10px;
 }
+.search{
+  position: fixed;
+  z-index: 100;
+  left: 0px;
+  top: 0px;
+  margin: 20px;
+  padding: 8px;
+  background-color: white;
+  border-radius: 10px;
+}
 .basemaps{
   min-width: 200px;
   position: fixed;

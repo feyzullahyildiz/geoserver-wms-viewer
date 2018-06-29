@@ -19,6 +19,11 @@ import { setMap } from './redux/actions/action-config'
 import store from './redux/store'
 import LayersContainer from './containers/LayersContainer'
 import Popup from './containers/Popup'
+import SearchContainer from './containers/SearchContainer'
+
+import VectorSource from 'ol/source/vector'
+import VectorLayer from 'ol/layer/vector'
+
 
 class App extends Component {
   constructor() {
@@ -28,7 +33,9 @@ class App extends Component {
     this.onBasemapVisibleChange = this.onBasemapVisibleChange.bind(this)
     this.onBasemapOpacityChange = this.onBasemapOpacityChange.bind(this)
     this.changeVisibility = this.changeVisibility.bind(this)
-
+    ImageWms.prototype.getSearchUrl = function () {
+      console.log('getSearchUrl', this)
+    }
   }
   componentDidMount() {
     var scaleLineControl = new ControlScaleLine({
@@ -57,6 +64,11 @@ class App extends Component {
     store.subscribe(() => {
       this.setState({ layers: store.getState().layers })
     })
+    this._infoVectorLayer = new VectorLayer({
+      zIndex: 10000,
+      source: new VectorSource()
+    })
+    map.addLayer(this._infoVectorLayer)
   }
   onBasemapOpacityChange(e, item) {
     this._basemap.setOpacity(e)
@@ -120,6 +132,7 @@ class App extends Component {
             opacity: geoserver.opacity,
             visible: geoserver.visible
           })
+          console.log('wms source', wms.getSource())
           let urlArray = geoserver.url.split('/')
           this.props.dispatch(addLayer(wms, geoserver, urlArray[urlArray.length - 2].toUpperCase()))
           this._map.addLayer(wms)
@@ -152,6 +165,7 @@ class App extends Component {
           INFO_FORMAT: "application/json"
         })
     })
+    console.log('urls', urls)
     let promises = urls.map(url => fetch(url).then(y => y.text()));
     Promise.all(promises).then(results => {
       let res = results.map(item => JSON.parse(item))
@@ -165,7 +179,7 @@ class App extends Component {
         <Popup />
         <LayersContainer data={this.state.layers} />
         <Basemaps data={this.state.basemaps} onBasemapOpacityChange={this.onBasemapOpacityChange} baseMapOpcity={this.state.basemapOpacity} />
-
+        <SearchContainer map={this._map} infoLayer={this._infoVectorLayer}/>
       </div>
     );
   }
