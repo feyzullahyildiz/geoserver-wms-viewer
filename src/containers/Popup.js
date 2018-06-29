@@ -12,6 +12,7 @@ class Popup extends Component {
         store.subscribe(() => {
             this.setState({ features: store.getState().features })
         })
+        
     }
     componentDidMount() {
         this._overlay = new Overlay({

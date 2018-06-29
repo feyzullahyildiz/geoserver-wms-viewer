@@ -27,11 +27,13 @@ katman eklemek için config.json dosyasında ilgili ayarları yapabilirsiniz.
       "layers": [
         {
           "layerName": "topp:states",
-          "visible": true
+          "visible": true,
+          "searchKey": "state_name"
         },
         {
           "layerName": "topp:tasmania_roads",
-          "visible": true
+          "visible": true,
+          "searchKey": "road_name"
         }
       ]
     },
@@ -43,11 +45,13 @@ katman eklemek için config.json dosyasında ilgili ayarları yapabilirsiniz.
       "layers": [
         {
           "layerName": "qgis:gungoren_panogps.shp",
-          "visible": false
+          "visible": false,
+          "searchKey": "pano_ad"
         },
         {
           "layerName": "qgis:gungoren.shp",
-          "visible": true
+          "visible": true,
+          "searchKey": "ilce_ad"
         }
       ]
     }
