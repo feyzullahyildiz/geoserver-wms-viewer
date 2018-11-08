@@ -1,0 +1,46 @@
+.my-checkbox-context{
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.my-checkbox-context div {
+    flex-grow: 1;
+    user-select: none;
+}
+
+.my-checkbox-context input {
+    display: none;
+}
+
+.my-checkbox-context span.rounded {
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    width: 45px;
+    height: 22px;
+    border-radius: 30px;
+    transition: all .3s ease-out;
+    margin-left: 1rem;
+}
+
+.my-checkbox-context span.rounded::before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 2px;
+    left: 4px;
+    bottom: 2px;
+    border-radius: 50%;
+    background-color: #c33;
+    transition: inherit;
+
+}
+
+.my-checkbox-context input:checked + span.rounded::before {
+    transform: translateX(19px);
+    background-color: #2d3;
+}
