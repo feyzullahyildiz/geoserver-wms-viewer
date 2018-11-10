@@ -5,7 +5,7 @@ class LayerManagerComponent extends Component {
         const { title, visible, opacity, onVisibleChanged, onOpacityChanged, children } = this.props
 
         return (
-            <div className="layer-manager-context">
+            <div className="layer">
 
                 <CheckboxComponent
                     onChange={onVisibleChanged}
@@ -14,7 +14,7 @@ class LayerManagerComponent extends Component {
                     {title}
                 </CheckboxComponent>
                 <input type="range" value={opacity} onChange={(e) =>onOpacityChanged(e.target.value)} step={0.05} max={1} min={0.05}/> 
-                <div className="layers">
+                <div className="nested-layers">
                     {
                         children.map((ll, index) => {
                             return <CheckboxComponent

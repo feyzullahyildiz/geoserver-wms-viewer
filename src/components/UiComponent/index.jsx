@@ -5,7 +5,7 @@ class UiComponent extends Component {
     render() {
         return (
             <div className="ui-component-context">
-                <div className="layer-manager-context">
+                <div className="layer-manager">
                     <LayerManagerContainer></LayerManagerContainer>
                 </div>
             </div>
