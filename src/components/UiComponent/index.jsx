@@ -1,17 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LayerManagerContainer from '../../containers/LayerManagerContainer'
 import './style.css'
-class UiComponent extends Component {
-    render() {
-        return (
-            <div className="ui-component-context">
+import EditContainer from '../../containers/EditContainer';
+
+export default (props) => {
+    return (
+        <div className={`ui-component-context ${props.isEdit ? 'edit' : ''}`}>
+
+            <div className="top-right-area">
+                <div className="edit-manager">
+                    <EditContainer />
+                </div>
                 <div className="layer-manager">
-                    <LayerManagerContainer></LayerManagerContainer>
+                    <LayerManagerContainer />
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
-
-
-export default UiComponent

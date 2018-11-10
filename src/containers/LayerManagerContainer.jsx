@@ -11,7 +11,7 @@ class LayerManagerContainer extends Component {
         this.props.chaneanestedlayerpropery(layer, nestedLayer, property)
     }
     render() {
-        const { layers } = this.props
+        const { layers, config } = this.props
         return (
             <React.Fragment>
                 {
@@ -25,6 +25,7 @@ class LayerManagerContainer extends Component {
                             visible={layer.visible}
                             url={layer.url}
                             title={layer.title}
+                            isEdit={config.isEdit}
                         >
                             {layer.layers.map((nestedLayer, j) => {
                                 return {
@@ -42,7 +43,8 @@ class LayerManagerContainer extends Component {
     }
 }
 const mapStateToProps = (state) => ({
-    layers: state.layers
+    layers: state.layers,
+    config: state.config,
 })
 const mapDispatchToProps = (dispatch) => ({
     chanelayerpropery: (layer, property) => dispatch(changeLayerProperty(layer, property)),

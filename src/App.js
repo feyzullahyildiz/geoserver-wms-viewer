@@ -7,7 +7,7 @@ import { WmsLayer } from './contexts/WmsLayer';
 class App extends Component {
 
   render() {
-    const { layers } = this.props
+    const { layers, config } = this.props
     let wmsLayers = layers.map((layer, index) => {
       return <WmsLayer
         key={index}
@@ -22,12 +22,13 @@ class App extends Component {
         <MapContainer>
           {wmsLayers}
         </MapContainer>
-        <UiComponent></UiComponent>
+        <UiComponent isEdit={config.isEdit}/>
       </React.Fragment>
     );
   }
 }
 const mapStateToProps = (state) => ({
-  layers: state.layers
+  layers: state.layers,
+  config: state.config
 })
 export default connect(mapStateToProps)(App);

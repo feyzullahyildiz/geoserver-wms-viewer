@@ -1,5 +1,6 @@
-.ui-component-context .layer-manager{
-    position: fixed;
+
+.ui-component-context .top-right-area{
+    position: absolute;
     right: 1rem;
     top: 1rem;
     background-color: white;
@@ -12,7 +13,66 @@
     opacity: .2;
     transition: opacity .15s ease-out;
 }
-
-.ui-component-context .layer-manager:hover {
+.ui-component-context .top-right-area:hover,
+.ui-component-context.edit .top-right-area {
     opacity: 1;
+}
+.ui-component-context .layer-manager{
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr;
+    gap: 1rem;
+}
+
+
+
+.ui-component-context .edit-manager {
+    position: relative
+}
+
+
+.ui-component-context .layer-manager .layer {
+    
+}
+
+.ui-component-context .layer-manager .layer .layer-main-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.ui-component-context .layer-manager .layer .layer-main-container .left {
+    display: none;
+}
+.ui-component-context .layer-manager .layer.edit .layer-main-container .left {
+    display: flex;
+}
+.ui-component-context .layer-manager .layer .layer-main-container .right {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: .2rem;
+}
+
+.ui-component-context .layer-manager .layer .nested-main-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.ui-component-context .layer-manager .layer .nested-main-container .left {
+    display: none;
+}
+.ui-component-context .layer-manager .layer.edit .nested-main-container .left {
+    display: flex;
+}
+.ui-component-context .layer-manager .layer .nested-main-container .right {
+    flex-grow: 1;
+}
+
+
+
+
+
+
+.ui-component-context .layer-manager .layer.edit {
+    background-color: rgba(50, 50, 50, .5);
 }
