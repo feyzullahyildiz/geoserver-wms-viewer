@@ -1,15 +1,17 @@
 import { createStore, combineReducers } from 'redux';
 import LayerReducer from './reducers/reducer-layers'
-import FeaturesReducer from './reducers/reducer-features'
-import ConfigReducer from './reducers/reducer-config'
+
+import { initialData } from './config'
+import { saveState, loadState } from './state-store-manager'
 
 const combined = combineReducers({
-    layers: LayerReducer,
-    features: FeaturesReducer,
-    config : ConfigReducer
+    layers: LayerReducer
 })
-const store = createStore(combined, {},
+const store = createStore(combined, loadState() || initialData,
     window.devToolsExtension && window.devToolsExtension())
 
+store.subscribe(() => {
+    saveState(store.getState())
+})
 export default store
 
