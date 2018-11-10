@@ -40,10 +40,8 @@ class WmsLayer extends Component {
             })
             this._map.addLayer(this._imageLayer)
         }
-        console.log('WmsLayersContainer componentDidMount')
     }
     componentWillUnmount() {
-        console.log('WmsLayersContainer componentWillUnmount')
         this._map.removeLayer(this._imageLayer)
     }
     render() {
