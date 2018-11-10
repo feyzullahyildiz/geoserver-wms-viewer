@@ -23,164 +23,22 @@ import { connect } from 'react-redux'
 // import VectorSource from 'ol/source/vector'
 // import VectorLayer from 'ol/layer/vector'
 
-// import {Wms}
 import UiComponent from './components/UiComponent'
-import { MapContainer } from './containers/MapContext'
-import WmsLayersContainer from './containers/WmsLayersContainer';
+import { MapContainer } from './contexts/MapContext'
+import { WmsLayer } from './contexts/WmsLayer';
 class App extends Component {
-  // constructor() {
-  //   super()
-  //   this._layers = []
-  //   this.state = {}
-  //   this.onBasemapVisibleChange = this.onBasemapVisibleChange.bind(this)
-  //   this.onBasemapOpacityChange = this.onBasemapOpacityChange.bind(this)
-  //   this.changeVisibility = this.changeVisibility.bind(this)
-  //   ImageWms.prototype.getSearchUrl = function () {
-  //     console.log('getSearchUrl', this)
-  //   }
-  // }
-  // componentDidMount() {
-  //   var scaleLineControl = new ControlScaleLine({
-  //     className: 'm-right'
-  //   })
-  //   const map = new Map({
-  //     controls: Control.defaults({
-  //       attributionOptions: {
-  //         collapsible: false
-  //       }
-  //     }).extend([
-  //       scaleLineControl
-  //     ]),
-  //     target: 'map',
-  //     view: new View()
-  //   })
-  //   window.map = map
-  //   store.dispatch(setMap(map))
-  //   map.on('singleclick', this.onMapSingleClick.bind(this))
-  //   this._map = map
-  //   map.updateSize()
 
-  //   this.loadWmsLayers()
-  //   scaleLineControl.setUnits('metric')
-
-  //   store.subscribe(() => {
-  //     this.setState({ layers: store.getState().layers })
-  //   })
-  //   this._infoVectorLayer = new VectorLayer({
-  //     zIndex: 10000,
-  //     source: new VectorSource()
-  //   })
-  //   map.addLayer(this._infoVectorLayer)
-  // }
-  // onBasemapOpacityChange(e, item) {
-  //   this._basemap.setOpacity(e)
-  //   this.setState({
-  //     basemapOpacity: e
-  //   })
-  // }
-  // changeVisibility(e, item) {
-  //   if (item.wms.getVisible() === false) {
-  //     e.target.className = 'active'
-  //     item.wms.setVisible(true)
-  //     item.wms.getSource().updateParams({ 'LAYERS': item.layer.layerName })
-  //     return
-  //   }
-  //   let layers = item.wms.getSource().params_.LAYERS.split(',')
-
-  //   let wasVisible = layers.find(x => x === item.layer.layerName) === undefined ? false : true //önceden varmıydı
-  //   if (layers.length === 1 && wasVisible) {
-  //     item.wms.setVisible(false)
-  //     e.target.className = ''
-  //     return
-  //   } else {
-  //     if (wasVisible === false) {
-  //       e.target.className = 'active'
-  //       layers.push(item.layer.layerName)
-  //     } else {
-  //       layers = layers.filter(x => x !== item.layer.layerName)
-
-  //       e.target.className = ''
-  //     }
-  //     layers = layers.join(',')
-
-  //     item.wms.getSource().updateParams({ 'LAYERS': layers })
-  //   }
-  // }
-  // onBasemapVisibleChange(e, e2) {
-
-  //   this._basemap.setVisible(e.target.checked)
-  // }
-  // loadWmsLayers() {
-  //   fetch('/config.json')
-  //     .then(data => data.json())
-  //     .then(config => {
-  //       this._basemap = new Tile({ source: new OSM() })
-  //       this._basemap.setOpacity(config.basemapOpacity)
-  //       this.setState({ basemapOpacity: config.basemapOpacity })
-
-  //       this._map.addLayer(this._basemap)
-
-  //       let basemaps = <label>OSM<input type="checkbox" defaultChecked={true} onChange={this.onBasemapVisibleChange} /></label>
-  //       this.setState({ basemaps: basemaps })
-
-  //       this._map.getView().animate({ zoom: config.zoom, center: Proj.fromLonLat([config.lng, config.lat]) })
-  //       config.layers.map(geoserver => {
-  //         let wms = new Image({
-  //           source: new ImageWms({
-  //             url: geoserver.url,
-  //             params: { LAYERS: '' },
-  //             serverType: geoserver.type
-  //           }),
-  //           opacity: geoserver.opacity,
-  //           visible: geoserver.visible
-  //         })
-  //         console.log('wms source', wms.getSource())
-  //         let urlArray = geoserver.url.split('/')
-  //         this.props.dispatch(addLayer(wms, geoserver, urlArray[urlArray.length - 2].toUpperCase()))
-  //         this._map.addLayer(wms)
-
-  //         let layersString = geoserver.layers.map(layer => {
-  //           this._layers.push({ wms: wms, layer: layer })
-  //           if (layer.visible) {
-  //             return layer.layerName
-  //           }
-  //           return
-  //         })
-
-  //         layersString = layersString.filter(val => val).join(',')
-
-  //         wms.getSource().updateParams({ 'LAYERS': layersString })
-  //         return geoserver
-  //       })
-  //     })
-
-  // }
-  // onMapSingleClick(event) {
-  //   // console.log('event', event)
-  //   // console.log('store.getState()', store.getState())
-  //   store.getState().config.popup.setPosition(undefined)
-  //   let activeLayers = store.getState().layers.filter((item) => item.info.visible).map(x => x.wms)
-  //   let urls = activeLayers.map(item => {
-  //     return item.getSource().getGetFeatureInfoUrl(event.coordinate,
-  //       this._map.getView().getResolution(),
-  //       this._map.getView().getProjection(), {
-  //         INFO_FORMAT: "application/json"
-  //       })
-  //   })
-  //   console.log('urls', urls)
-  //   let promises = urls.map(url => fetch(url).then(y => y.text()));
-  //   Promise.all(promises).then(results => {
-  //     let res = results.map(item => JSON.parse(item))
-  //     store.dispatch(setFeatures(res, event))
-  //   });
-  // }
   render() {
     const { layers } = this.props
-    // console.log('layers', layers)
     let wmsLayers = layers.map((layer, index) => {
-      return <WmsLayersContainer key={index} url={layer.url} visible={layer.visible} layers={layer.layers} />
+      return <WmsLayer
+        key={index}
+        url={layer.url}
+        layers={layer.layers}
+        visible={layer.visible}
+        opacity={layer.opacity}
+      />
     })
-    console.log('wmslayers', wmsLayers)
     return (
       <React.Fragment>
         <MapContainer>
@@ -188,7 +46,6 @@ class App extends Component {
         </MapContainer>
         <UiComponent></UiComponent>
       </React.Fragment>
-
     );
   }
 }
