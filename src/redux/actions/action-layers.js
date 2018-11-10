@@ -49,3 +49,15 @@ export const changeLayerProperty = (layer, property) => {
         }
     }
 }
+export const addNewLayer = ({ title, url, layers, visible = true, opacity = 1 }) => {
+    return {
+        type: 'ADD_NEW_LAYER',
+        payload: {
+            title,
+            url,
+            layers,
+            visible,
+            opacity
+        }
+    }
+}

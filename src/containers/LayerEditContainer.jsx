@@ -10,7 +10,7 @@ class LayerEditContainer extends Component {
         this.updateLayer = this.updateLayer.bind(this)
     }
     setLayer(layer) {
-        console.log('layer', layer)
+        // console.log('layer', layer)
         this._layer = layer
 
         this.setState({ open: true, url: layer.url, title: layer.title })

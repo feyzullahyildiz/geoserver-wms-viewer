@@ -21,5 +21,9 @@ export default (state = [], action) => {
         state[layerIndex] = newLayer
         return Object.assign([], state)
     }
+    else if(action.type === 'ADD_NEW_LAYER'){
+        state.push(action.payload)
+        return Object.assign([], state)
+    }
     return state
 }
