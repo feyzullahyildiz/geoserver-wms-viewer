@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { changeLayerProperty, changeNestedLayerProperty } from '../redux/actions/action-layers'
+import { changeLayerProperty, changeNestedLayerProperty, deleteLayer } from '../redux/actions/action-layers'
 import LayerManagerComponent from '../components/LayerManagerComponent'
 import LayerEditContainer from './LayerEditContainer'
 class LayerManagerContainer extends Component {
@@ -15,13 +15,15 @@ class LayerManagerContainer extends Component {
     onANestedLayerChange(layer, nestedLayer, property) {
         this.props.chaneanestedlayerpropery(layer, nestedLayer, property)
     }
-    onLayerEditClicked(layer){
-        // debugger
-        // this.layerEditContainerRef.current.setLayer(layer)
+    onEditLayer(layer){
         this.layerEditContainerRef.current.getWrappedInstance().setLayer(layer)
     }
+    onDeleteLayer(layer){
+        const { deletelayer } = this.props
+        deletelayer(layer)
+    }
     render() {
-        const { layers, config } = this.props
+        const { layers, config} = this.props
         return (
             <React.Fragment>
                 {
@@ -36,7 +38,8 @@ class LayerManagerContainer extends Component {
                             url={layer.url}
                             title={layer.title}
                             isEdit={config.isEdit}
-                            onLayerEditClicked={() => this.onLayerEditClicked(layer)}
+                            onEditLayer={() => this.onEditLayer(layer)}
+                            onDeleteLayer={() => this.onDeleteLayer(layer)}
                         >
                             {layer.layers.map((nestedLayer, j) => {
                                 return {
@@ -61,5 +64,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     chanelayerpropery: (layer, property) => dispatch(changeLayerProperty(layer, property)),
     chaneanestedlayerpropery: (layer, nestedLayer, property) => dispatch(changeNestedLayerProperty(layer, nestedLayer, property)),
+    deletelayer: (layer) => dispatch(deleteLayer(layer))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(LayerManagerContainer);

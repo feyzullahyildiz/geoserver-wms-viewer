@@ -1,38 +1,3 @@
-// let id = 0
-// export function addLayer(wms, info, name) {
-//     id += 1
-//     return{
-//         type: 'ADD_LAYER',
-//         payload:{
-//             wms, info, name, id
-//         }
-
-//     }
-// }
-// export function changeVisiblity(name, id){
-//     return{
-//         type: 'CHANGE_VISIBILITY',
-//         payload: {
-//             name, id
-//         }
-//     }
-// }
-// export function changeOpacity(id, value){
-//     return{
-//         type: 'CHANGE_OPACITY',
-//         payload: {
-//             value, id
-//         }
-//     }
-// }
-// export function changeBaseLayerVisibility(visible, id){
-//     return{
-//         type :'CHANGE_BASE_LAYER_VISIBILITY',
-//         payload: {
-//             visible, id
-//         }
-//     }
-// }
 export const changeNestedLayerProperty = (layer, nestedLayer, property) => {
     return {
         type: 'CHANGE_NESTED_LAYER_PROPERTY',
@@ -59,5 +24,16 @@ export const addNewLayer = ({ title, url, layers, visible = true, opacity = 1 })
             visible,
             opacity
         }
+    }
+}
+export const deleteLayer = (layer) => {
+    return {
+        type: 'DELETE_LAYER',
+        payload: layer
+    }
+}
+export const resetLayers = () => {
+    return {
+        type: 'RESET_LAYERS'
     }
 }

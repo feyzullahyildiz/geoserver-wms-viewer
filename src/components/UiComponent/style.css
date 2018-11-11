@@ -45,6 +45,7 @@
 }
 .ui-component-context .layer-manager .layer.edit .layer-main-container .left {
     display: flex;
+    flex-direction: column;
 }
 .ui-component-context .layer-manager .layer .layer-main-container .right {
     display: flex;

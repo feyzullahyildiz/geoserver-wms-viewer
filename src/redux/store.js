@@ -9,7 +9,13 @@ const combined = combineReducers({
     layers: LayerReducer,
     config: ConfigReducer,
 })
-const store = createStore(combined, Object.assign(initialData, { layers: loadState() }),
+const state = initialData()
+const storedLayers = loadState()
+if (storedLayers) {
+    Object.assign(state, { layers: storedLayers })
+}
+
+const store = createStore(combined, state,
     window.devToolsExtension && window.devToolsExtension())
 
 store.subscribe(() => {

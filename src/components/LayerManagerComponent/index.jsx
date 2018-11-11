@@ -3,13 +3,14 @@ import CheckboxComponent from '../CheckboxComponent'
 import PropTypes from 'prop-types'
 class LayerManagerComponent extends Component {
     render() {
-        const { title, visible, opacity, onVisibleChanged, onOpacityChanged, children, isEdit, onLayerEditClicked } = this.props
+        const { title, visible, opacity, onVisibleChanged, onOpacityChanged, children, isEdit, onEditLayer, onDeleteLayer } = this.props
 
         return (
             <div className={`layer ${isEdit ? 'edit' : ''}`}>
                 <div className="layer-main-container">
                     <div className="left">
-                        <button onClick={onLayerEditClicked}>Edit</button>
+                        <button onClick={onEditLayer}>Edit</button>
+                        <button onClick={onDeleteLayer}>Delete</button>
                     </div>
                     <div className="right">
                         <CheckboxComponent
@@ -51,6 +52,8 @@ class LayerManagerComponent extends Component {
 //     isEdit: ''
 // }
 LayerManagerComponent.propTypes = {
-    isEdit: PropTypes.bool
+    isEdit: PropTypes.bool,
+    onEditLayer: PropTypes.func,
+    onDeleteLayer: PropTypes.func
 }
 export default LayerManagerComponent;

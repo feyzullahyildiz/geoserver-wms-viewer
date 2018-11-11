@@ -1,3 +1,4 @@
+import {initialData} from '../config'
 export default (state = [], action) => {
 
     if (action.type === 'CHANGE_LAYER_PROPERTY') {
@@ -21,9 +22,18 @@ export default (state = [], action) => {
         state[layerIndex] = newLayer
         return Object.assign([], state)
     }
-    else if(action.type === 'ADD_NEW_LAYER'){
+    else if (action.type === 'ADD_NEW_LAYER') {
         state.push(action.payload)
         return Object.assign([], state)
+    }
+    else if (action.type === 'DELETE_LAYER') {
+        let layer = action.payload
+        let index = state.indexOf(layer)
+        state.splice(index, 1)
+        return Object.assign([], state)
+    }
+    else if (action.type === 'RESET_LAYERS'){
+        return Object.assign([], initialData().layers)
     }
     return state
 }
