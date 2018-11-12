@@ -9,6 +9,7 @@
     display: none;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 1000;
+    overflow: auto;
 }
 .modal-backdrop.open {
     display: block;

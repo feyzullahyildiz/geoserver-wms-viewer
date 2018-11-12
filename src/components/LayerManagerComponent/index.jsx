@@ -26,21 +26,14 @@ class LayerManagerComponent extends Component {
                 <div className="nested-layers">
                     {
                         children.map((ll, index) => {
-                            return <div key={index} className="nested-main-container">
-                                <div className="left">
-                                    <button>Edit</button>
-                                </div>
-                                <div className="right">
-                                    <CheckboxComponent
-                                        onChange={ll.onToggled}
-                                        checked={ll.visible}
-                                        key={ll.key + index}
-                                        size="small"
-                                    >
-                                        {ll.layerName}
-                                    </CheckboxComponent>
-                                </div>
-                            </div>
+                            return <CheckboxComponent
+                                onChange={ll.onToggled}
+                                checked={ll.visible}
+                                key={ll.key + index}
+                                size="small"
+                            >
+                                {ll.layerName}
+                            </CheckboxComponent>
                         })
                     }
                 </div>

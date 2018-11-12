@@ -24,7 +24,6 @@ class LayerAddContainer extends Component {
     }
     reset() {
         this.setState({
-            open: false,
             title: this.defaultTitle,
             url: this.defaultUrl,
             layers: this.defaultLayers,
@@ -41,6 +40,7 @@ class LayerAddContainer extends Component {
     }
     onClose() {
         this.reset()
+        this.setState({open: false})
     }
     clearInputs() {
         this.setState({
@@ -58,8 +58,8 @@ class LayerAddContainer extends Component {
         const { title, url, listLayers } = this.state
         const { addnewlayer } = this.props
         const layers = listLayers.map(l => ({ visible: true, layerName: l }))
-        console.log('layers', layers)
         addnewlayer({ layers, title, url })
+        this.onClose()
     }
     render() {
         const { open, title, url, layers, listLayers } = this.state

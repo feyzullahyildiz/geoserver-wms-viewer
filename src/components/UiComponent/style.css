@@ -17,12 +17,6 @@
 .ui-component-context.edit .top-right-area {
     opacity: 1;
 }
-.ui-component-context .layer-manager{
-    position: relative;
-    display: grid;
-    grid-template-rows: 1fr;
-    gap: 1rem;
-}
 
 
 
@@ -30,7 +24,14 @@
     position: relative
 }
 
-
+.ui-component-context .layer-manager{
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr;
+    gap: 1rem;
+    overflow-y: auto;
+    max-height: 50vh;
+}
 .ui-component-context .layer-manager .layer {
     
 }

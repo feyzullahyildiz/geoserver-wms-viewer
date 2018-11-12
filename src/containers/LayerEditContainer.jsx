@@ -2,29 +2,52 @@ import React, { Component } from 'react'
 import { ModalComponent } from '../components/ModalComponent'
 import { connect } from 'react-redux'
 import { changeLayerProperty } from '../redux/actions/action-layers'
+
 class LayerEditContainer extends Component {
     constructor() {
         super()
-        this.state = { open: false, url: undefined, title: undefined }
+        this.state = { open: false, url: undefined, title: undefined, layersArray: [], layersString: '' }
         this.onClose = this.onClose.bind(this)
         this.updateLayer = this.updateLayer.bind(this)
     }
-    setLayer(layer) {
-        // console.log('layer', layer)
-        this._layer = layer
 
-        this.setState({ open: true, url: layer.url, title: layer.title })
+    convertStringToListLayers(str) {
+        return str.split(',').map(l => l.trim()).filter(l => l.length > 0)
+    }
+    convertLayersArrayToString(arr) {
+        return arr.map(l => (l.layerName)).join(', ')
+    }
+    reset() {
+        this._layer = undefined
+        this.setState({ url: undefined, title: undefined, layersArray: [], layersString: '' })
+    }
+
+    setLayer(layer) {
+        this._layer = layer
+        this.setState({
+            open: true,
+            url: layer.url,
+            title: layer.title,
+            layersArray: layer.layers.map(l => (l.layerName)),
+            layersString: this.convertLayersArrayToString(layer.layers)
+        })
     }
     onClose() {
-        this._layer = undefined
-        this.setState({ open: false, url: undefined, title: undefined })
+        this.reset()
+        this.setState({ open: false })
     }
     onChange(key, val) {
         this.setState({ [key]: val })
     }
+    onLayerTextChange(layersString) {
+        this.setState({
+            layersArray: this.convertStringToListLayers(layersString),
+            layersString: layersString
+        })
+    }
     updateLayer() {
         const { chanelayerpropery } = this.props
-        const { url, title } = this.state
+        const { url, title, layersArray } = this.state
         let doesSomethingChanged = false
         let properyObject = {}
         if (this._layer.url !== url) {
@@ -35,13 +58,19 @@ class LayerEditContainer extends Component {
             doesSomethingChanged = true
             properyObject.title = title
         }
+        if (this._layer.layers.length !== layersArray.length ||
+            this._layer.layers.map(l => l.layerName.trim()).join(',') !== layersArray.join(',')) {
+                
+            doesSomethingChanged = true
+            properyObject.layers = layersArray.map(l => ({ layerName: l, visible: true }))
+        }
         if (doesSomethingChanged) {
             chanelayerpropery(this._layer, properyObject)
             this.onClose()
         }
     }
     render() {
-        const { open, url, title } = this.state
+        const { open, url, title, layersString, layersArray } = this.state
         if (!open)
             return null
         const bottomContent = <button onClick={this.updateLayer}> Update Layer</button>
@@ -58,6 +87,21 @@ class LayerEditContainer extends Component {
                     value={title}
                     placeholder="layer name"
                 />
+                Nested/Inner Layers
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }} className="add-layer-nested-layer-container">
+                    <textarea
+                        placeholder="we parse nested layers using comma ','"
+                        onChange={(val) => this.onLayerTextChange(val.target.value)}
+                        value={layersString}>
+                    </textarea>
+                    <div><ul>
+                        {layersArray.map((ll, index) => {
+                            return <li key={index}>
+                                {ll}
+                            </li>
+                        })}
+                    </ul></div>
+                </div>
             </ModalComponent>
         )
     }
