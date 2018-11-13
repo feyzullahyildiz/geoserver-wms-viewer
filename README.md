@@ -2,14 +2,16 @@
 
 This project is to see published geoserver wms layer with a basemap.
 
+[DemoApp](http://194.182.80.44:9080/)
+
 TODOS:
   - Update README.MD
-  - Add a demo link
   - Make env.config.js file is reachable remotely
   - Add more basemap option and change basemap opacity
   - Default zoomlevel, map position
   - Make layers are dragable
   - Select a feature when map is clicked
+  - css files will be scss
 
 ## Licence & copyright
 
