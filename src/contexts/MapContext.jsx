@@ -12,14 +12,14 @@ class MapContainer extends Component {
     componentWillMount() {
         this._map = new olMap({
             view: new olView({
-                zoom: 4,
-                center: [4000000, 4000000]
+                zoom: 8,
+                center: [3200000, 5000000]
             }),
             controls: [],
             layers: [
                 new TileLayer({
                     source: new OSM(),
-                    opacity: 0.3
+                    opacity: 0.4
                 })
             ]
         })
