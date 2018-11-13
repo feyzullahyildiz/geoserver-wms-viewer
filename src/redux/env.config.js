@@ -1,4 +1,4 @@
-export const initialData = {
+export const initialData = () => ({
   // "lat": 41.02,
   // "lng": 28.86,
   // "zoom": 8,
@@ -18,4 +18,4 @@ export const initialData = {
       ]
     }
   ]
-}
+})
