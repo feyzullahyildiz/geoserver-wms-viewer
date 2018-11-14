@@ -2,6 +2,7 @@ import React from 'react';
 import LayerManagerContainer from '../../containers/LayerManagerContainer'
 import './style.css'
 import EditContainer from '../../containers/EditContainer';
+import BasemapContainer from '../../containers/BasemapContainer';
 
 export default (props) => {
     return (
@@ -14,6 +15,9 @@ export default (props) => {
                 <div className="layer-manager">
                     <LayerManagerContainer />
                 </div>
+            </div>
+            <div className="bottom-right-area">
+                <BasemapContainer />
             </div>
         </div>
     );

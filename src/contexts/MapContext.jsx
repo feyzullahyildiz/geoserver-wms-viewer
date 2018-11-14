@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import olMap from 'ol/Map'
 import olView from 'ol/View'
-import TileLayer from 'ol/layer/Tile'
-import { OSM } from 'ol/source'
+// import TileLayer from 'ol/layer/Tile'
+// import { OSM } from 'ol/source'
 const MapContext = React.createContext({
     map: null
 })
@@ -16,12 +16,7 @@ class MapContainer extends Component {
                 center: [3200000, 5000000]
             }),
             controls: [],
-            layers: [
-                new TileLayer({
-                    source: new OSM(),
-                    opacity: 0.4
-                })
-            ]
+            layers: []
         })
     }
     componentDidMount() {

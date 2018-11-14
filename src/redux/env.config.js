@@ -3,7 +3,7 @@ export const initialData = () => ({
   // "lng": 28.86,
   // "zoom": 8,
   // "basemapOpacity": 0.5,
-  "layers": [
+  layers: [
     {
       "title": "Datas",
       "url": "http://localhost:8080/geoserver/datas/wms",
@@ -17,5 +17,12 @@ export const initialData = () => ({
         }
       ]
     }
+  ],
+  basemaps: [
+    { url: 'http://mt{1-3}.google.com/vt/lyrs=m@113&hl=tr&&x={x}&y={y}&z={z}', visible: true, title: 'Google Road', opacity: .5 },
+    { url: 'http://mt{1-3}.google.com/vt/lyrs=y@113&hl=tr&&x={x}&y={y}&z={z}', visible: false, title: 'Google Hybrid', opacity: .8 },
+    { url: 'http://mt{1-3}.google.com/vt/lyrs=s@13&hl=tr&&x={x}&y={y}&z={z}', visible: false, title: 'Google Satellite', opacity: .8 },
+    { url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png', visible: false, title: 'Open Street', opacity: .8 },
+    { url: 'https://{a-c}.tile.opentopomap.org/{z}/{x}/{y}.png', visible: false, title: 'Open Topographic', opacity: 1 }
   ]
 })
