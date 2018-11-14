@@ -78,3 +78,13 @@
 .ui-component-context .layer-manager .layer.edit {
     background-color: rgba(50, 50, 50, .5);
 }
+
+.ui-component-context .bottom-right-area {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.ui-component-context .bottom-right-area .active {
+    background-color: red;
+}

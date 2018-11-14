@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import UiComponent from './components/UiComponent'
 import { MapContainer } from './contexts/MapContext'
 import { WmsLayer } from './contexts/WmsLayer';
+import { BaseMapLayer } from './contexts/BaseMapLayer';
 class App extends Component {
 
   render() {
-    const { layers, config } = this.props
+    const { layers, basemaps, config } = this.props
     let wmsLayers = layers.map((layer, index) => {
       return <WmsLayer
         key={index}
@@ -17,18 +18,29 @@ class App extends Component {
         opacity={layer.opacity}
       />
     })
+    const basemapLayers = basemaps.map((layer, index) => {
+      return <BaseMapLayer
+        key={index}
+        url={layer.url}
+        visible={layer.visible}
+        opacity={layer.opacity}
+        title={layer.title}
+      />
+    })
     return (
       <React.Fragment>
         <MapContainer>
           {wmsLayers}
+          {basemapLayers}
         </MapContainer>
-        <UiComponent isEdit={config.isEdit}/>
+        <UiComponent isEdit={config.isEdit} />
       </React.Fragment>
     );
   }
 }
 const mapStateToProps = (state) => ({
   layers: state.layers,
-  config: state.config
+  config: state.config,
+  basemaps: state.basemaps,
 })
 export default connect(mapStateToProps)(App);
