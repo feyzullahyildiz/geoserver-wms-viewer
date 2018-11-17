@@ -13,6 +13,13 @@ export class BaseMapLayer extends Component {
         }
         if (nextProps.opacity !== opacity) {
             this._basemapLayer.setOpacity(nextProps.opacity)
+            
+            if(nextProps.opacity === 0){
+                this._basemapLayer.setVisible(false)
+            }
+            else if(nextProps.opacity > 0 && visible === true){
+                this._basemapLayer.setVisible(true)
+            } 
         }
         if (nextProps.url !== url) {
             this._basemapLayer.getSource().setUrl(nextProps.url)

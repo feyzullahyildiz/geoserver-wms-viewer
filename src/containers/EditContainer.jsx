@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { EditComponent } from '../components/EditComponent'
+import { LayerEditComponent } from '../components/LayerEditComponent'
 import { setEditMode } from '../redux/actions/action-config'
 import { resetLayers } from '../redux/actions/action-layers'
 import LayerAddContainer from './LayerAddContainer'
@@ -26,7 +26,7 @@ class EditContainer extends Component {
         return (
             <React.Fragment>
 
-                <EditComponent
+                <LayerEditComponent
                     onEditModeChange={() => oneditmodechange(!config.isEdit)}
                     isEditMode={config.isEdit}
                     onLayerAddClicked={this.onLayerAddClicked}

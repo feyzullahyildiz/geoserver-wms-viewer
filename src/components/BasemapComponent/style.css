@@ -1,3 +1,22 @@
 .basemap-component{
     position: relative;
 }
+
+.basemap-component .visible-manager {
+    margin: .5rem;
+    /* opacity: .2; */
+}
+.basemap-component .basemap-content {
+    position: absolute;
+    margin: .3rem;
+    display: none;
+    left: auto;
+    right: 0;
+    bottom: 0;
+    top: auto;
+}
+.basemap-component .visible-manager:hover + .basemap-content,
+.basemap-component .visible-manager:active + .basemap-content,
+.basemap-component .basemap-content:hover {
+    display: block;
+}

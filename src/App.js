@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-
 import UiComponent from './components/UiComponent'
 import { MapContainer } from './contexts/MapContext'
 import { WmsLayer } from './contexts/WmsLayer';

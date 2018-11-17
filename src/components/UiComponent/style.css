@@ -3,13 +3,13 @@
     position: absolute;
     right: 1rem;
     top: 1rem;
-    background-color: white;
+    /* background-color: white;
     border: 1px solid black;
     border-radius: .5rem;
     display: grid;
     grid-template-rows: 1fr;
     padding: .2rem .4rem;
-    gap: 1rem;
+    gap: 1rem; */
     opacity: .2;
     transition: opacity .15s ease-out;
 }
@@ -21,7 +21,9 @@
 
 
 .ui-component-context .edit-manager {
-    position: relative
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .ui-component-context .layer-manager{
@@ -30,10 +32,12 @@
     grid-template-rows: 1fr;
     gap: 1rem;
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: 50vh;
 }
 .ui-component-context .layer-manager .layer {
     
+    padding-right: .5rem;
 }
 
 .ui-component-context .layer-manager .layer .layer-main-container {
@@ -76,7 +80,7 @@
 
 
 .ui-component-context .layer-manager .layer.edit {
-    background-color: rgba(50, 50, 50, .5);
+    background-color: rgba(50, 50, 50, .15);
 }
 
 .ui-component-context .bottom-right-area {

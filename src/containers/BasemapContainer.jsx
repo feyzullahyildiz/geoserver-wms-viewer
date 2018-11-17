@@ -30,7 +30,7 @@ class BasemapContainer extends Component {
         return (
             <BasemapComponent
                 opacity={activeBasemap.opacity}
-                onOpacityChange={(val) => this.onOpacityChange(activeBasemap, val)}>
+                onOpacityChange={(e, val) => this.onOpacityChange(activeBasemap, val)}>
                 {basemapItems}
             </BasemapComponent>
         )
