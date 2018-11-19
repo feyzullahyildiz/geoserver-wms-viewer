@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import olMap from 'ol/Map'
 import olView from 'ol/View'
-// import TileLayer from 'ol/layer/Tile'
-// import { OSM } from 'ol/source'
 const MapContext = React.createContext({
     map: null
 })
 class MapContainer extends Component {
-
     _mapReference = React.createRef()
     componentWillMount() {
+        const { zoom, center } = this.props
         this._map = new olMap({
             view: new olView({
-                zoom: 8,
-                center: [3200000, 5000000]
+                zoom: zoom || 8,
+                center: center || [3200000, 5000000]
             }),
             controls: [],
             layers: []

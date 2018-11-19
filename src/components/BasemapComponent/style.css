@@ -2,7 +2,7 @@
     position: relative;
 }
 
-.basemap-component .visible-manager {
+.basemap-component .basemap-visible-manager {
     margin: .5rem;
     /* opacity: .2; */
 }
@@ -15,8 +15,30 @@
     bottom: 0;
     top: auto;
 }
-.basemap-component .visible-manager:hover + .basemap-content,
-.basemap-component .visible-manager:active + .basemap-content,
+.basemap-component .basemap-visible-manager:hover + .basemap-content,
+.basemap-component .basemap-visible-manager:active + .basemap-content,
 .basemap-component .basemap-content:hover {
+    display: block;
+}
+
+.map-settings-component {
+    position: relative;
+}
+.map-settings-component .map-settings-visible-manager {
+
+}
+.map-settings-component .map-settings-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    left: auto;
+    bottom: 0;
+    top: auto;
+}
+.map-settings-component .map-settings-visible-manager:hover + .map-settings-content,
+.map-settings-component .map-settings-visible-manager:active + .map-settings-content,
+.map-settings-component .map-settings-content:hover,
+.map-settings-component .map-settings-content:active
+{
     display: block;
 }

@@ -4,10 +4,11 @@ import UiComponent from './components/UiComponent'
 import { MapContainer } from './contexts/MapContext'
 import { WmsLayer } from './contexts/WmsLayer';
 import { BaseMapLayer } from './contexts/BaseMapLayer';
+import { MapSettingsManager } from './contexts/MapSettingsManager';
 class App extends Component {
 
   render() {
-    const { layers, basemaps, config } = this.props
+    const { layers, basemaps, config, mapSettings } = this.props
     let wmsLayers = layers.map((layer, index) => {
       return <WmsLayer
         key={index}
@@ -28,9 +29,10 @@ class App extends Component {
     })
     return (
       <React.Fragment>
-        <MapContainer>
+        <MapContainer center={mapSettings.center} zoom={mapSettings.zoom}>
           {wmsLayers}
           {basemapLayers}
+          <MapSettingsManager/>
         </MapContainer>
         <UiComponent isEdit={config.isEdit} />
       </React.Fragment>
@@ -41,5 +43,6 @@ const mapStateToProps = (state) => ({
   layers: state.layers,
   config: state.config,
   basemaps: state.basemaps,
+  mapSettings: state.mapSettings,
 })
 export default connect(mapStateToProps)(App);

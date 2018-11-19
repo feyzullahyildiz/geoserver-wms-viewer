@@ -20,8 +20,6 @@ class LayerManagerComponent extends Component {
 
                 <div className="layer-main-container">
                     <div className="left">
-                        {/* <button onClick={onEditLayer}>Edit</button>
-                        <button onClick={onDeleteLayer}>Delete</button> */}
                         <IconButton onClick={onEditLayer} color="primary">
                             <EditIcon fontSize="small"/>
                         </IconButton>
@@ -30,13 +28,6 @@ class LayerManagerComponent extends Component {
                         </IconButton>
                     </div>
                     <div className="right">
-                        {/* <CheckboxComponent
-                            onChange={onVisibleChanged}
-                            checked={visible}
-                        >
-                            {title}
-                        </CheckboxComponent> */}
-                        {/* <FormGroup row> */}
                         <FormControlLabel
                             labelPlacement="start"
                             control={
@@ -44,11 +35,10 @@ class LayerManagerComponent extends Component {
                             }
                             label={title}
                         />
-                        <Slider style={{ padding: '0.5rem 0' }} onChange={(_, e) => onOpacityChanged(e)}
+                        <Slider style={{ padding: '0.8rem 0', margin: '.4rem' }} onChange={(_, e) => onOpacityChanged(e)}
                             value={opacity}
                             min={0} max={1} step={0.1}
                         />
-                        {/* <input type="range" value={opacity} onChange={(e) => onOpacityChanged(e.target.value)} step={0.05} max={1} min={0.05} /> */}
                     </div>
                 </div>
 
