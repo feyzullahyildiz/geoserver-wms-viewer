@@ -79,4 +79,4 @@ LayerManagerComponent.propTypes = {
     onEditLayer: PropTypes.func,
     onDeleteLayer: PropTypes.func
 }
-export default LayerManagerComponent;
+export {LayerManagerComponent};

@@ -1,5 +1,5 @@
 import {initialData} from '../config'
-export default (state = [], action) => {
+export const LayerReducer = (state = [], action) => {
 
     if (action.type === 'CHANGE_LAYER_PROPERTY') {
         const { layer, property } = action.payload

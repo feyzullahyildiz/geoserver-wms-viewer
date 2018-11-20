@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { LayerEditComponent } from '../components/LayerEditComponent'
 import { setEditMode } from '../redux/actions/action-config'
 import { resetLayers } from '../redux/actions/action-layers'
-import LayerAddContainer from './LayerAddContainer'
+import { layerAddModalOpenSubject } from '../rxjs/subjects';
 
-class EditContainer extends Component {
+class _EditContainer extends Component {
     constructor() {
         super()
         this.layerAddContainerRef = React.createRef()
@@ -19,7 +19,7 @@ class EditContainer extends Component {
         }
     }
     onLayerAddClicked() {
-        this.layerAddContainerRef.current.getWrappedInstance().showAddLayerModal()
+        layerAddModalOpenSubject.next()
     }
     render() {
         const { config, oneditmodechange } = this.props
@@ -32,7 +32,7 @@ class EditContainer extends Component {
                     onLayerAddClicked={this.onLayerAddClicked}
                     onReset={this.onReset}
                 />
-                <LayerAddContainer ref={this.layerAddContainerRef} />
+                
             </React.Fragment>
         )
     }
@@ -45,4 +45,5 @@ const mapStateToProps = (state) => ({
     config: state.config,
     layers: state.layers,
 })
-export default connect(mapStateToProps, mapDispatchToProps)(EditContainer)
+const EditContainer = connect(mapStateToProps, mapDispatchToProps)(_EditContainer)
+export { EditContainer }

@@ -24,4 +24,4 @@ CheckboxComponent.propTypes = {
     title: PropTypes.string,
     size: PropTypes.oneOf(['small', '']),
 }
-export default CheckboxComponent;
+export {CheckboxComponent};

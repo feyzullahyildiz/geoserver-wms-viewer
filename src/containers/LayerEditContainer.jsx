@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import { ModalComponent } from '../components/ModalComponent'
 import { connect } from 'react-redux'
 import { changeLayerProperty } from '../redux/actions/action-layers'
+import { layerEditModalOpenSubject } from '../rxjs/subjects';
 
-class LayerEditContainer extends Component {
+class _LayerEditContainer extends Component {
     constructor() {
         super()
         this.state = { open: false, url: undefined, title: undefined, layersArray: [], layersString: '' }
         this.onClose = this.onClose.bind(this)
         this.updateLayer = this.updateLayer.bind(this)
+        this.setLayer = this.setLayer.bind(this)
+        layerEditModalOpenSubject.subscribe(this.setLayer)
     }
 
     convertStringToListLayers(str) {
@@ -109,4 +112,5 @@ class LayerEditContainer extends Component {
 const mapDispatchToProps = (dispatch) => ({
     chanelayerpropery: (layer, property) => dispatch(changeLayerProperty(layer, property)),
 })
-export default connect(undefined, mapDispatchToProps, null, { withRef: true })(LayerEditContainer)
+const LayerEditContainer = connect(undefined, mapDispatchToProps)(_LayerEditContainer)
+export { LayerEditContainer }

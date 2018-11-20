@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from 'redux';
-import LayerReducer from './reducers/reducer-layers'
-import ConfigReducer from './reducers/reducer-config'
-import BasemapReducer from './reducers/reducer-basemaps'
-import MapSettingsReducer from './reducers/reducer-mapsettings'
+import {LayerReducer} from './reducers/reducer-layers'
+import {ConfigReducer} from './reducers/reducer-config'
+import {BasemapReducer} from './reducers/reducer-basemaps'
+import {MapSettingsReducer} from './reducers/reducer-mapsettings'
 
 import { initialData } from './config'
 import { saveState, loadState } from './state-store-manager'
@@ -24,7 +24,7 @@ const store = createStore(combined, state,
 
 store.subscribe(() => {
     let state = store.getState()
-    saveState({layers: state.layers, basemaps: state.basemaps, mapSettings: state.mapSettings})
+    saveState({ layers: state.layers, basemaps: state.basemaps, mapSettings: state.mapSettings })
 })
-export default store
+export { store }
 

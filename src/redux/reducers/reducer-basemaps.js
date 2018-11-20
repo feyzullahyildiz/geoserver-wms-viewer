@@ -1,5 +1,5 @@
 import { initialData } from '../config'
-export default (state = [], action) => {
+export const BasemapReducer =  (state = [], action) => {
     if (action.type === 'CHANGE_BASEMAP_OPACITY') {
         const { basemap, opacity } = action.payload
         const index = state.indexOf(basemap)

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BasemapComponent, BasemapItemComponent } from '../components/BasemapComponent';
 import { connect } from 'react-redux'
 import { changeBasemapOpacity, changeActiveBasemap } from '../redux/actions/action-basemaps'
-class BasemapContainer extends Component {
+class _BasemapContainer extends Component {
     constructor() {
         super()
         this.onBasemapChange = this.onBasemapChange.bind(this)
@@ -44,4 +44,5 @@ const mapDispatchToProps = (dispatch) => ({
     changeactivebasemap: (basemap) => dispatch(changeActiveBasemap(basemap)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(BasemapContainer)
+const BasemapContainer = connect(mapStateToProps, mapDispatchToProps)(_BasemapContainer)
+export { BasemapContainer }
