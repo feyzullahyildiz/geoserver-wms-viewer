@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import UiComponent from './components/UiComponent'
+import { UiComponent } from './components/UiComponent'
 import { MapContainer } from './contexts/MapContext'
 import { WmsLayer } from './contexts/WmsLayer';
 import { BaseMapLayer } from './contexts/BaseMapLayer';
 import { MapSettingsManager } from './contexts/MapSettingsManager';
-class App extends Component {
+class _App extends Component {
 
   render() {
     const { layers, basemaps, config, mapSettings } = this.props
@@ -32,7 +32,7 @@ class App extends Component {
         <MapContainer center={mapSettings.center} zoom={mapSettings.zoom}>
           {wmsLayers}
           {basemapLayers}
-          <MapSettingsManager/>
+          <MapSettingsManager />
         </MapContainer>
         <UiComponent isEdit={config.isEdit} />
       </React.Fragment>
@@ -45,4 +45,5 @@ const mapStateToProps = (state) => ({
   basemaps: state.basemaps,
   mapSettings: state.mapSettings,
 })
-export default connect(mapStateToProps)(App);
+const App = connect(mapStateToProps)(_App);
+export { App }

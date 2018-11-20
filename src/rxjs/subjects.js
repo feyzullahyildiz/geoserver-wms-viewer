@@ -1,8 +1,11 @@
 import { Subject } from 'rxjs'
 
 
-export const mapPosition = new Subject()
+export const setMapPositionSubject = new Subject()
 
+export const layerEditModalOpenSubject = new Subject()
+
+export const layerAddModalOpenSubject = new Subject()
 
 
 

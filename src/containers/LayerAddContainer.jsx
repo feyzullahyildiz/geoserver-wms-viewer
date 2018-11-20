@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addNewLayer } from '../redux/actions/action-layers'
 import { ModalComponent } from '../components/ModalComponent'
-class LayerAddContainer extends Component {
+import { layerAddModalOpenSubject } from '../rxjs/subjects';
+class _LayerAddContainer extends Component {
     constructor() {
         super()
         this.defaultUrl = 'http://localhost:8080/geoserver/pois/wms'
@@ -21,6 +22,8 @@ class LayerAddContainer extends Component {
         this.onClose = this.onClose.bind(this)
         this.clearInputs = this.clearInputs.bind(this)
         this.addLayer = this.addLayer.bind(this)
+        this.showAddLayerModal = this.showAddLayerModal.bind(this)
+        layerAddModalOpenSubject.subscribe(this.showAddLayerModal)
     }
     reset() {
         this.setState({
@@ -40,7 +43,7 @@ class LayerAddContainer extends Component {
     }
     onClose() {
         this.reset()
-        this.setState({open: false})
+        this.setState({ open: false })
     }
     clearInputs() {
         this.setState({
@@ -103,6 +106,7 @@ class LayerAddContainer extends Component {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    addnewlayer: ({title, url, layers}) => dispatch(addNewLayer({ title, url, layers })),
+    addnewlayer: ({ title, url, layers }) => dispatch(addNewLayer({ title, url, layers })),
 })
-export default connect(undefined, mapDispatchToProps, null, { withRef: true })(LayerAddContainer)
+const LayerAddContainer = connect(undefined, mapDispatchToProps)(_LayerAddContainer)
+export { LayerAddContainer }

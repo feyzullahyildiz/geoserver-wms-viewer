@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { MapSettingsComponent } from '../components/MapSettingsComponent';
 import { connect } from 'react-redux'
-import { mapPosition } from '../rxjs/subjects'
+import { setMapPositionSubject } from '../rxjs/subjects'
 class _MapSettingsContainer extends Component {
   constructor(){
     super()
     this.onMapPositionSet = this.onMapPositionSet.bind(this)
   }
   onMapPositionSet(){
-    mapPosition.next()
+    setMapPositionSubject.next()
   }
   render() {
     return (

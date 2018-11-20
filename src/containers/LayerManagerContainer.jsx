@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { changeLayerProperty, changeNestedLayerProperty, deleteLayer } from '../redux/actions/action-layers'
-import LayerManagerComponent from '../components/LayerManagerComponent'
-import LayerEditContainer from './LayerEditContainer'
-class LayerManagerContainer extends Component {
+import { LayerManagerComponent} from '../components/LayerManagerComponent'
+import { layerEditModalOpenSubject } from '../rxjs/subjects';
+class _LayerManagerContainer extends Component {
 
-    constructor(){
-        super()
-        this.layerEditContainerRef = React.createRef()
-    }
     onLayerChange(layer, property) {
         this.props.chanelayerpropery(layer, property)
     }
@@ -16,7 +12,7 @@ class LayerManagerContainer extends Component {
         this.props.chaneanestedlayerpropery(layer, nestedLayer, property)
     }
     onEditLayer(layer){
-        this.layerEditContainerRef.current.getWrappedInstance().setLayer(layer)
+        layerEditModalOpenSubject.next(layer)
     }
     onDeleteLayer(layer){
         const { deletelayer } = this.props
@@ -52,7 +48,6 @@ class LayerManagerContainer extends Component {
                         </LayerManagerComponent>
                     })
                 }
-                <LayerEditContainer ref={this.layerEditContainerRef} />
             </React.Fragment>
         );
     }
@@ -66,4 +61,5 @@ const mapDispatchToProps = (dispatch) => ({
     chaneanestedlayerpropery: (layer, nestedLayer, property) => dispatch(changeNestedLayerProperty(layer, nestedLayer, property)),
     deletelayer: (layer) => dispatch(deleteLayer(layer))
 })
-export default connect(mapStateToProps, mapDispatchToProps)(LayerManagerContainer);
+const LayerManagerContainer = connect(mapStateToProps, mapDispatchToProps)(_LayerManagerContainer);
+export { LayerManagerContainer }

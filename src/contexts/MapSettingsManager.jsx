@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { MapContext } from './MapContext';
-import { mapPosition } from '../rxjs/subjects' 
+import { setMapPositionSubject } from '../rxjs/subjects' 
 import { connect } from 'react-redux'
 
 import { setMapPosition } from '../redux/actions/action-mapsettings'
 
 class _MapSettingsManager extends Component {
     componentDidMount(){
-        this._mapPositionSubscription = mapPosition.subscribe(() => {
+        this._mapPositionSubscription = setMapPositionSubject.subscribe(() => {
             const view = this._map.getView()
             const zoom = view.getZoom()
             const center = view.getCenter()

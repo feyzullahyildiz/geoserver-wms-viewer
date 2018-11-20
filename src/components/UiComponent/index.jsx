@@ -1,21 +1,22 @@
 import React from 'react';
-import LayerManagerContainer from '../../containers/LayerManagerContainer'
+import { LayerManagerContainer } from '../../containers/LayerManagerContainer'
 import './style.css'
-import EditContainer from '../../containers/EditContainer';
-import BasemapContainer from '../../containers/BasemapContainer';
+import { EditContainer } from '../../containers/EditContainer';
+import { BasemapContainer } from '../../containers/BasemapContainer';
 
 import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import {MapSettingsContainer} from '../../containers/MapSettingsContainer';
+import { MapSettingsContainer } from '../../containers/MapSettingsContainer';
+import { LayerEditContainer } from '../../containers/LayerEditContainer';
+import { LayerAddContainer } from '../../containers/LayerAddContainer';
 
-export default (props) => {
+export const UiComponent = (props) => {
     return (
         <div className={`ui-component-context ${props.isEdit ? 'edit' : ''}`}>
             <div className="top-right-area">
                 <Card>
                     <CardContent>
-
                         <div className="edit-manager">
                             <EditContainer />
                         </div>
@@ -28,6 +29,10 @@ export default (props) => {
             <div className="bottom-right-area">
                 <MapSettingsContainer />
                 <BasemapContainer />
+            </div>
+            <div className="modals">
+                <LayerEditContainer />
+                <LayerAddContainer />
             </div>
         </div>
     );
