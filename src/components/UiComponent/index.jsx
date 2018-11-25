@@ -5,11 +5,9 @@ import { EditContainer } from '../../containers/EditContainer';
 import { BasemapContainer } from '../../containers/BasemapContainer';
 
 import Card from '@material-ui/core/Card';
-// import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import { MapSettingsContainer } from '../../containers/MapSettingsContainer';
-import { LayerEditContainer } from '../../containers/LayerEditContainer';
-import { LayerAddContainer } from '../../containers/LayerAddContainer';
+import { LayerModifyContainer } from '../../containers/LayerModifyContainer';
 
 export const UiComponent = (props) => {
     return (
@@ -31,8 +29,7 @@ export const UiComponent = (props) => {
                 <BasemapContainer />
             </div>
             <div className="modals">
-                <LayerEditContainer />
-                <LayerAddContainer />
+                <LayerModifyContainer />
             </div>
         </div>
     );
