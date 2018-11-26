@@ -6,14 +6,18 @@ export const initialData = () => ({
   layers: [
     {
       "title": "Datas",
-      "url": "http://localhost:8080/geoserver/datas/wms",
+      "url": "http://194.182.80.44:8080/geoserver/test/wms",
       "opacity": 0.6,
       "type": "geoserver",
       "visible": true,
       "layers": [
         {
-          "layerName": "datas:districts",
-          "visible": false
+          "layerName": "test:bridges",
+          "visible": true
+        },
+        {
+          "layerName": "test:random_points",
+          "visible": true
         }
       ]
     }
