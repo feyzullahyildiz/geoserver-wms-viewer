@@ -6,13 +6,11 @@ This project is to see published geoserver wms layer with a basemap.
 
 TODOS:
   - Make this todo list an issue
-  - Default zoomlevel, map position
   - Make layers are dragable
   - Select a feature when map is clicked
   - css files will be scss
   - Use a bundler webpack, parcel etc.
   - Convert jsx files to tsx files(Use Typescript)
-  - Use MaterialUI, SemanticUI etc.
   - Add DemoApp to github pages, if its possible
   - Write some test codes and connect to travis 
 
