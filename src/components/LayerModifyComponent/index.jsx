@@ -66,31 +66,29 @@ class _LayerModifyComponent extends Component {
                         value={layerTitle}
                         onChange={onLayerTitleChange}
                     />
-
-
-                        <TextField
-                            label="NestedLayers"
-                            placeholder="myworkspace:pois, myworkspace:lines, myworkspace:polygons"
-                            multiline
-                            fullWidth
-                            style={{ margin: 8 }}
-                            margin="normal"
-                            value={nestedLayersText}
-                            onChange={onNestedLayersTextChange}
-                        />
-                        <List style={{ margin: 8, maxHeight: 360, overflowY: 'auto' }} dense={true}>
-                            {layersArray.map((item, index) => (
-                                <Fragment key={index}>
-                                    <ListItem key={index}>
-                                        <ListItemText
-                                            key={index}
-                                            primary={item}
-                                        />
-                                    </ListItem>
-                                    <Divider />
-                                </Fragment>
-                            ))}
-                        </List>
+                    <TextField
+                        label="NestedLayers"
+                        placeholder="myworkspace:pois, myworkspace:lines, myworkspace:polygons"
+                        multiline
+                        fullWidth
+                        style={{ margin: 8 }}
+                        margin="normal"
+                        value={nestedLayersText}
+                        onChange={onNestedLayersTextChange}
+                    />
+                    <List style={{ margin: 8, maxHeight: 360, overflowY: 'auto' }} dense={true}>
+                        {layersArray.map((item, index) => (
+                            <Fragment key={index}>
+                                <ListItem key={index}>
+                                    <ListItemText
+                                        key={index}
+                                        primary={item}
+                                    />
+                                </ListItem>
+                                <Divider />
+                            </Fragment>
+                        ))}
+                    </List>
                     <DialogActions>
                         {_bottomContent}
                         <Button color="secondary" onClick={onClose}>

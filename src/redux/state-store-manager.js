@@ -9,11 +9,15 @@ export const loadState = () => {
         return undefined
     }
 }
+let timeoutID
 export const saveState = (state) => {
     try {
-        const serialized = JSON.stringify(state)
-        localStorage.setItem('state', serialized)
+        clearTimeout(timeoutID)
+        timeoutID = setTimeout(() => {
+            const serialized = JSON.stringify(state)
+            localStorage.setItem('state', serialized)
+        }, 1000)
     } catch (error) {
-        
+
     }
 }

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import './style.css'
 import Button from '@material-ui/core/Button'
-import LayersIcon from '@material-ui/icons/Layers'
+import MapIcon from '@material-ui/icons/Map'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Slider from '@material-ui/lab/Slider'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
+
 export class BasemapComponent extends Component {
     render() {
         const { opacity, onOpacityChange, children } = this.props
@@ -15,25 +15,22 @@ export class BasemapComponent extends Component {
             <div className="basemap-component">
                 <div className="basemap-visible-manager">
                     <Button variant="fab" color="primary" mini>
-                        <LayersIcon/>
+                        <MapIcon />
                     </Button>
                 </div>
                 <div className="basemap-content">
                     <Card>
-                        <CardContent>
-                            {/* <List component="nav"> */}
+                        <CardContent style={{ padding: '8px' }}>
                             <List>
                                 {children}
                             </List>
-                            <br/>
                         </CardContent>
-                        <CardContent>
-
-                            <Slider style={{ padding: '0.8rem 0', margin: '.4rem' }} onChange={onOpacityChange}
+                        <div style={{ padding: '8px' }}>
+                            <Slider style={{ padding: '0.8rem 0' }} onChange={onOpacityChange}
                                 value={opacity}
                                 min={0} max={1} step={0.1}
                             />
-                        </CardContent>
+                        </div>
                     </Card>
                 </div>
             </div>
@@ -45,8 +42,8 @@ export class BasemapItemComponent extends Component {
         const { visible, onClick, children } = this.props
 
         return (
-            <ListItem  button selected={visible} onClick={onClick}>
-                <ListItemText primary={children} />
+            <ListItem style={{ padding: '8px', whiteSpace: 'nowrap' }} button selected={visible} onClick={onClick}>
+                {children}
             </ListItem>
         )
     }
