@@ -9,11 +9,16 @@ import CardContent from '@material-ui/core/CardContent';
 import { MapSettingsContainer } from '../../containers/MapSettingsContainer';
 import { LayerModifyContainer } from '../../containers/LayerModifyContainer';
 
+import LayersIcon from '@material-ui/icons/Layers'
+import Button from '@material-ui/core/Button'
 export const UiComponent = (props) => {
     return (
         <div className={`ui-component-context ${props.isEdit ? 'edit' : ''}`}>
             <div className="top-right-area">
-                <Card>
+                <Button className="top-right-visible-manager" variant="fab" color="primary" mini>
+                    <LayersIcon fontSize="small" />
+                </Button>
+                <Card className="top-right-card">
                     <CardContent>
                         <div className="edit-manager">
                             <EditContainer />

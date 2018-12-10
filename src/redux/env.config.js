@@ -23,10 +23,13 @@ export const initialData = () => ({
     }
   ],
   basemaps: [
-    { url: 'http://mt{1-3}.google.com/vt/lyrs=m@113&hl=tr&&x={x}&y={y}&z={z}', visible: true, title: 'Google Road', opacity: .5 },
-    { url: 'http://mt{1-3}.google.com/vt/lyrs=y@113&hl=tr&&x={x}&y={y}&z={z}', visible: false, title: 'Google Hybrid', opacity: .8 },
-    { url: 'http://mt{1-3}.google.com/vt/lyrs=s@13&hl=tr&&x={x}&y={y}&z={z}', visible: false, title: 'Google Satellite', opacity: .8 },
-    { url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png', visible: false, title: 'Open Street', opacity: .8 },
-    { url: 'https://{a-c}.tile.opentopomap.org/{z}/{x}/{y}.png', visible: false, title: 'Open Topographic', opacity: 1 }
+    { url: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png', visible: true, title: 'Wikimedia Maps', opacity: 1 },
+    { url: 'http://tile.thunderforest.com/cycle/{z}/{x}/{y}.png', visible: false, title: 'OpenCycle', opacity: 1 },
+    { url: 'http://{a-b}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', visible: false, title: 'Humanitarian map style', opacity: 1 },
+    { url: 'http://{a-c}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', visible: false, title: 'OSM France', opacity: 1 },
+    { url: 'http://a.tile.stamen.com/toner/{z}/{x}/{y}.png', visible: false, title: 'Stamen Toner', opacity: 1 },
+    { url: 'http://c.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg', visible: false, title: 'Stamen Watercolor', opacity: 1 },
+    { url: 'https://cartodb-basemaps-{1-3}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', visible: false, title: 'CartoDB Light ', opacity: 1 },
+    { url: 'https://cartodb-basemaps-{1-3}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', visible: false, title: 'CartoDB Dark', opacity: 1 },
   ]
 })
