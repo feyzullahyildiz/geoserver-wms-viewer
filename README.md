@@ -2,7 +2,7 @@
 
 This project is to see published geoserver wms layer with a basemap.
 
-[DemoApp](http://194.182.80.44:9080/)
+[DemoApp](https://feyzullahyildiz.github.io/geoserver-wms-viewer/)
 
 TODOS:
   - Make this todo list an issue
